@@ -10,10 +10,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text("gaurav"),
-        ),
-      ),
+          body: Column(
+        children: [
+          Text("gaurav"),
+          Text("thagunna"),
+        ],
+      )),
     );
   }
 }
