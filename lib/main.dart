@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Column(
           children: [
+            Text("name:"),
             Text("gaurav"),
             Text("singh"),
             Text("thagunna"),
