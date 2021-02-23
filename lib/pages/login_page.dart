@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -7,17 +8,18 @@ class LoginPage extends StatelessWidget {
         body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image(
-          image: AssetImage('assets/images/login.png'),
+        Image.asset(
+          'assets/images/login.png',
+          fit: BoxFit.fitWidth,
         ),
         Center(
           child: Text(
             "Login page",
-            style: TextStyle(
+            style: GoogleFonts.peralta(
               color: Colors.indigoAccent,
               fontWeight: FontWeight.bold,
               fontSize: 22,
-              letterSpacing: 1.2,
+              letterSpacing: 8.2,
             ),
           ),
         ),
