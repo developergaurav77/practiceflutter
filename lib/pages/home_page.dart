@@ -17,6 +17,19 @@ class HomePage extends StatelessWidget {
             Text("singh"),
             Text("thagunna"),
             Text("student2"),
+            SizedBox(
+              height: 180.0,
+            ),
+            RaisedButton(
+              color: Colors.indigoAccent,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                "Back",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
       ),
