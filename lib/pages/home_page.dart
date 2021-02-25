@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_basic1/widgets/drawer_widget.dart';
 
 class HomePage extends StatelessWidget {
   String char = "gaurav";
@@ -33,9 +34,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: Center(child: Text("gaurav")),
-      ),
+      drawer: MyDrawer(),
     );
   }
 }
