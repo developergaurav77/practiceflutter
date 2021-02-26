@@ -48,7 +48,7 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.white,
               ),
               title: Text(
-                "AboutMe",
+                "AboutApp",
                 style: TextStyle(color: Colors.white),
               ),
               trailing: Icon(
@@ -59,11 +59,11 @@ class MyDrawer extends StatelessWidget {
             ListTile(
               onTap: () {},
               leading: Icon(
-                Icons.contact_mail,
+                Icons.feedback,
                 color: Colors.white,
               ),
               title: Text(
-                "ContactMe",
+                "FeedBack",
                 style: TextStyle(color: Colors.white),
               ),
               trailing: Icon(

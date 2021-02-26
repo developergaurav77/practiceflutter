@@ -1,21 +1,18 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ProductModel {
-  final String id;
+  final int id;
   final String name;
   final num price;
   final String desc;
+  final String colors;
   final String imgurl;
 
-  ProductModel({this.id, this.name, this.price, this.desc, this.imgurl});
-}
-
-final Products = [
   ProductModel(
-      id: "100",
-      name: "mouse",
-      price: 400,
-      desc: "the displayed mouse is the most salled mouse from our app",
-      imgurl:
-          "https://upload.wikimedia.org/wikipedia/commons/2/22/3-Tasten-Maus_Microsoft.jpg"),
-];
+      {@required this.id,
+      @required this.name,
+      @required this.price,
+      @required this.desc,
+      @required this.imgurl,
+      @required this.colors});
+}

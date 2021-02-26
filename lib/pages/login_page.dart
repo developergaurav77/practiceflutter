@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         buttontap = true;
       });
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 3));
       await Navigator.pushNamed(context, '/home');
       setState(() {
         buttontap = false;
