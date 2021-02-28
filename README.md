@@ -1,5 +1,5 @@
 # flutter_app_basic1
-In this repositry i practice and tried to learn basic flutter widgets. Any with little flutter knowledge can use this repo. The final app is kind of simple e-commerce electronic app. 
+In this repository, I practice and tried to learn basic flutter widgets. Any with little flutter knowledge can use this repo. The final app is kind of simple e-commerce electronic app. 
 
 A new Flutter application.
 
