@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app_basic1/models/catalogmodel.dart';
 import 'package:flutter_app_basic1/models/product.dart';
 import 'package:flutter_app_basic1/widgets/drawer_widget.dart';
 import 'package:flutter_app_basic1/widgets/product_widget.dart';
@@ -11,40 +15,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String char = "gaurav";
   String appbarname = "E-commerce App";
-  final List<ProductModel> products = [
-    ProductModel(
-        id: 100,
-        name: "Mouse",
-        price: 400,
-        desc: "the displayed mouse is the most salled mouse from our app",
-        colors: "#560725",
-        imgurl:
-            "https://upload.wikimedia.org/wikipedia/commons/2/22/3-Tasten-Maus_Microsoft.jpg"),
-    ProductModel(
-        id: 200,
-        name: "Earphone",
-        price: 500,
-        desc: "Best Earphone till now",
-        colors: "#560730",
-        imgurl:
-            "https://images-na.ssl-images-amazon.com/images/I/61CkEyP9n3L._SL1500_.jpg"),
-    ProductModel(
-        id: 300,
-        name: "MobilePhone",
-        price: 15000,
-        desc: "the displayed phone is the most salled phone from our app",
-        colors: "#560725",
-        imgurl:
-            "https://images-na.ssl-images-amazon.com/images/I/61L1ItFgFHL._SL1500_.jpg"),
-    ProductModel(
-        id: 400,
-        name: "Dell XPS Laptop",
-        price: 15000,
-        desc: "the displayed phone is the most salled phone from our app",
-        colors: "#560725",
-        imgurl:
-            "https://images-na.ssl-images-amazon.com/images/I/61ext2tSJAL._AC_SL1199_.jpg"),
-  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+
+//loading json data
+  loadData() async {
+    final productJson =
+        await rootBundle.loadString("assets/files/productname.json");
+    final decodedData = jsonDecode(productJson);
+    var productData = decodedData["products"];
+    Catalogmodel.products = List.from(productData)
+        .map<ProductModel>((model) => ProductModel.fromMap(model))
+        .toList();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,35 +44,51 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Container(
           height: 900,
-          child: ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              return Card(
-                elevation: 4.0,
-                child: Column(
-                  children: [
-                    Image.network(
-                      "${products[index].imgurl}",
-                      fit: BoxFit.contain,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text("${products[index].name}"),
-                        Text("${products[index].price}"),
-                        RaisedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/detail');
-                          },
-                          child: Text("Details"),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+          child: (Catalogmodel.products.length != null &&
+                  Catalogmodel.products.isNotEmpty)
+              ? ListView.builder(
+                  itemCount: Catalogmodel.products.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 4.0,
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 290,
+                            width: 280,
+                            child: Image.network(
+                              "${Catalogmodel.products[index].image}",
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                "${Catalogmodel.products[index].name}",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text("Rs ${Catalogmodel.products[index].price}"),
+                              RaisedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/detail',
+                                  );
+                                },
+                                child: Text(
+                                  "Details",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )
+              : Center(child: CircularProgressIndicator()),
         ),
       ),
       drawer: MyDrawer(),

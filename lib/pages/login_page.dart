@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         buttontap = true;
       });
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 2));
       await Navigator.pushNamed(context, '/home');
       setState(() {
         buttontap = false;
@@ -67,6 +67,8 @@ class _LoginPageState extends State<LoginPage> {
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Username can\'t be empty';
+                  } else if (value.length == 1) {
+                    return 'Username name\t be of single letter';
                   }
                   return null;
                 },
