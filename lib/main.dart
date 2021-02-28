@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_basic1/pages/detail_page.dart';
+import 'package:flutter_app_basic1/pages/home_page.dart';
+import 'package:flutter_app_basic1/pages/login_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,14 +13,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            Text("gaurav"),
-            Text("thagunna"),
-          ],
-        ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        fontFamily: GoogleFonts.lato().fontFamily,
+        appBarTheme: AppBarTheme(color: Colors.indigo, elevation: 0.0),
       ),
+      themeMode: ThemeMode.light,
+      initialRoute: "/login",
+      //home: HomePage(),
+      routes: {
+        "/": (context) => LoginPage(),
+        "/home": (context) => HomePage(),
+        "/login": (context) => LoginPage(),
+        "/detail": (context) => DetailPage(),
+      },
     );
   }
 }
