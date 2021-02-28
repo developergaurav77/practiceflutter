@@ -38,57 +38,71 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white70,
       appBar: AppBar(
         title: Text("$appbarname"),
       ),
-      body: Center(
-        child: Container(
-          height: 900,
-          child: (Catalogmodel.products.length != null &&
-                  Catalogmodel.products.isNotEmpty)
-              ? ListView.builder(
-                  itemCount: Catalogmodel.products.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 4.0,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 290,
-                            width: 280,
-                            child: Image.network(
-                              "${Catalogmodel.products[index].image}",
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: SafeArea(
+        child: Center(
+          child: Container(
+            height: 900,
+            child: (Catalogmodel.products.length != null &&
+                    Catalogmodel.products.isNotEmpty)
+                ? ListView.builder(
+                    itemCount: Catalogmodel.products.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 0.0),
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 4.0,
+                          child: Column(
                             children: [
-                              Text(
-                                "${Catalogmodel.products[index].name}",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Text("Rs ${Catalogmodel.products[index].price}"),
-                              RaisedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    '/detail',
-                                  );
-                                },
-                                child: Text(
-                                  "Details",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                              Container(
+                                height: 290,
+                                width: 280,
+                                child: Image.network(
+                                  "${Catalogmodel.products[index].image}",
+                                  fit: BoxFit.contain,
                                 ),
-                              )
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    "${Catalogmodel.products[index].name}",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                      "Rs ${Catalogmodel.products[index].price}"),
+                                  RaisedButton(
+                                    color: Colors.indigoAccent,
+                                    hoverColor: Colors.indigo,
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/detail',
+                                      );
+                                    },
+                                    child: Text(
+                                      "Details",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                )
-              : Center(child: CircularProgressIndicator()),
+                        ),
+                      );
+                    },
+                  )
+                : Center(child: CircularProgressIndicator()),
+          ),
         ),
       ),
       drawer: MyDrawer(),
